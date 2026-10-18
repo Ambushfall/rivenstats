@@ -28,8 +28,31 @@ async function fetchBrokenJson(url) {
     median: 20
  */
 new gridjs.Grid({
-  columns: ["Item Type", "Compatibility", "Rerolled", "Average", "Standard Deviation", "Minimum", "Maximum", "Popularity", "Median"],
-  data: rivens.map(riven => [riven.itemType, riven.compatibility ? riven.compatibility : "Unveiled", riven.rerolled ? "Yes" : "No", riven.avg, riven.stddev, riven.min, riven.max, riven.pop, riven.median]),
+  columns: 
+  [
+    "Item Type", 
+    "Compatibility", 
+    "Rerolled", 
+    "Average", 
+    "Standard Deviation", 
+    "Minimum", 
+    "Maximum", 
+    "Popularity", 
+    "Median"
+  ],
+  data: rivens.sort((a, b) => b.pop - a.pop)
+  .map(riven => 
+    [
+      riven.itemType, 
+      riven.compatibility ? riven.compatibility : "Unveiled", 
+      riven.rerolled ? "Yes" : "No",
+      riven.avg,
+      riven.stddev,
+      riven.min,
+      riven.max,
+      riven.pop,
+      riven.median
+    ]),
   search: true,
   sort: true,
   pagination: true
