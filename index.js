@@ -40,7 +40,9 @@ new gridjs.Grid({
     "Popularity", 
     "Median"
   ],
-  data: rivens.sort((a, b) => b.pop - a.pop)
+  data: rivens
+  .sort((a, b) => b.pop - a.pop)
+  .filter(riven => riven.pop > 1)//     sort outliers with only 1 popularity, cuz these are weird and not useful
   .map(riven => 
     [
       riven.itemType, 
